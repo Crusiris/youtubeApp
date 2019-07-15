@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { YoutubeService } from '../../services/youtube.service';
 
+declare var $:any;
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styles: []
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   videos: any[] = [];
+  videoSelec: any;
 
   constructor(public service:YoutubeService) {
 
@@ -18,8 +20,9 @@ export class HomeComponent implements OnInit {
       this.videos = videos;
     });
    }
-
-  ngOnInit() {
-  }
-
+   verVideo(video:any){
+    this.videoSelec = video ;
+    console.log(video);
+    $('#myModal').modal();
+   }
 }
