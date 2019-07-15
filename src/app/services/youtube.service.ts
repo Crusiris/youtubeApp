@@ -18,7 +18,12 @@ private nextPageToken: string = "";
  params = new  HttpParams().set( 'part', 'snippet' )
                            .set( 'maxResults', '10' )
                            .set( 'playlistId', this.playlist )
-                           .set( 'key', this.apiKey );
+                           .set( 'key', this.apiKey )
+                           
+                            
+  //if( this.nextPageToken) {
+  // new HttpParams().set( 'pageToken', this.nextPageToken);
+  //}
 
   constructor(public http:HttpClient) { 
     console.log("Servicio Activo");
@@ -28,6 +33,10 @@ private nextPageToken: string = "";
     getVideos(){
       
       //let url = `${this.youtubeUrl}/playlistItems`;
+
+      if( this.nextPageToken) {
+        new HttpParams().set( 'pageToken', this.nextPageToken);
+       }
       
           return this.http.get( `${this.youtubeUrl}/playlistItems/`, { params:this.params} )
           

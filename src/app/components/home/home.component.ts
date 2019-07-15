@@ -15,14 +15,25 @@ export class HomeComponent {
 
   constructor(public service:YoutubeService) {
 
-    this.service.getVideos().subscribe( videos => {
-      console.log(videos);
-      this.videos = videos;
-    });
+    this.service.getVideos()
+    .subscribe( videos =>this.videos = videos);
    }
+
+   cargarMas(){
+    this.service.getVideos()
+    .subscribe( videos =>this.videos.push.apply ( this.videos, videos ));
+  }
+
    verVideo(video:any){
     this.videoSelec = video ;
-    console.log(video);
     $('#myModal').modal();
    }
+
+
+   cerrarModal(){
+    this.videoSelec = null ;
+    $('#myModal').modal('hide');
+   }
+
+   
 }

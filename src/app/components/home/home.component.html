@@ -17,9 +17,12 @@
             </div>
         </div>
     </div>
+    <button (click)="cargarMas()" type="button" class="btn btn-outline-primary btn-block">
+        Cargar mas videos
+    </button>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
         <div class="modal-content" *ngIf="videoSelec">
             <div class="modal-header">
@@ -27,10 +30,10 @@
 
             </div>
             <div class="modal-body">
-                <iframe width="100%" height="300px" src="https://www.youtube.com/embed/sgFQjRL5niY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="300px" [src]="videoSelec.resourceId.videoId | videoYoutube" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar modal</button>
+            <div (click)="cerrarModal()" class="modal-footer">
+                <button type="button" class="btn btn-secondary">Cerrar modal</button>
 
             </div>
         </div>
